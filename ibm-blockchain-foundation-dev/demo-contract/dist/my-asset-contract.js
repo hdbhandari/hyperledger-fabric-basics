@@ -18,7 +18,7 @@ const my_asset_1 = require("./my-asset");
 let MyAssetContract = class MyAssetContract extends fabric_contract_api_1.Contract {
     async myAssetExists(ctx, myAssetId) {
         const data = await ctx.stub.getState(myAssetId);
-        return (!!data && data.length > 0);
+        return !!data && data.length > 0;
     }
     async createMyAsset(ctx, myAssetId, value) {
         const exists = await this.myAssetExists(ctx, myAssetId);
@@ -56,10 +56,38 @@ let MyAssetContract = class MyAssetContract extends fabric_contract_api_1.Contra
         }
         await ctx.stub.deleteState(myAssetId);
     }
+    async queryAllAssets(ctx) {
+        const startKey = "000";
+        const endKey = "999";
+        const iterator = await ctx.stub.getStateByRange(startKey, endKey);
+        const allResults = [];
+        while (true) {
+            const res = await iterator.next();
+            if (res.value && res.value.value.toString()) {
+                console.log(res.value.value.toString());
+                const Key = res.value.key;
+                let Record;
+                try {
+                    Record = JSON.parse(res.value.value.toString());
+                }
+                catch (err) {
+                    console.log(err);
+                    Record = res.value.value.toString();
+                }
+                allResults.push({ Key, Record });
+            }
+            if (res.done) {
+                console.log("end of data");
+                await iterator.close();
+                console.info(allResults);
+                return JSON.stringify(allResults);
+            }
+        }
+    }
 };
 __decorate([
     fabric_contract_api_1.Transaction(false),
-    fabric_contract_api_1.Returns('boolean'),
+    fabric_contract_api_1.Returns("boolean"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [fabric_contract_api_1.Context, String]),
     __metadata("design:returntype", Promise)
@@ -72,7 +100,7 @@ __decorate([
 ], MyAssetContract.prototype, "createMyAsset", null);
 __decorate([
     fabric_contract_api_1.Transaction(false),
-    fabric_contract_api_1.Returns('MyAsset'),
+    fabric_contract_api_1.Returns("MyAsset"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [fabric_contract_api_1.Context, String]),
     __metadata("design:returntype", Promise)
@@ -89,8 +117,14 @@ __decorate([
     __metadata("design:paramtypes", [fabric_contract_api_1.Context, String]),
     __metadata("design:returntype", Promise)
 ], MyAssetContract.prototype, "deleteMyAsset", null);
+__decorate([
+    fabric_contract_api_1.Transaction(false),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [fabric_contract_api_1.Context]),
+    __metadata("design:returntype", Promise)
+], MyAssetContract.prototype, "queryAllAssets", null);
 MyAssetContract = __decorate([
-    fabric_contract_api_1.Info({ title: 'MyAssetContract', description: 'My Smart Contract' })
+    fabric_contract_api_1.Info({ title: "MyAssetContract", description: "My Smart Contract" })
 ], MyAssetContract);
 exports.MyAssetContract = MyAssetContract;
 //# sourceMappingURL=my-asset-contract.js.map
