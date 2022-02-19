@@ -18,6 +18,9 @@
 ## Create a new Fabric Environment
 
 - Now we will delete all the unnecessary files and directories and create a minimum directory structure
+- Navigate to the directory where above commands were executed
+
+`cd ~`
 
 `sudo cp -r fabric-samples/bin/ hyperledger-fabric-basics/basics-101/`
 
@@ -57,7 +60,7 @@
 
 `sudo rm hyperledger-fabric-basics/basics-101/chaincode/fabcar/javascript/.eslintrc.js`
 
-`sudo rm /home/hdb/hyperledger-fabric-basics/basics-101/chaincode/README.md`
+`sudo rm hyperledger-fabric-basics/basics-101/chaincode/README.md`
 
 ## Directories
 
