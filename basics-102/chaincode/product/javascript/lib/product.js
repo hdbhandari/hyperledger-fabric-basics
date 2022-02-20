@@ -1,14 +1,8 @@
-/*
- * Copyright IBM Corp. All Rights Reserved.
- *
- * SPDX-License-Identifier: Apache-2.0
- */
-
 'use strict'
 
 const { Contract } = require('fabric-contract-api')
 
-class FabCar extends Contract {
+class Product extends Contract {
 
     async initLedger(ctx) {
         console.info('============= START : Initialize Ledger with Products ===========')
@@ -118,4 +112,4 @@ class FabCar extends Contract {
 
 }
 
-module.exports = FabCar
+module.exports = Product

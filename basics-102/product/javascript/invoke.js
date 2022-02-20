@@ -37,7 +37,7 @@ async function main() {
         const network = await gateway.getNetwork('mychannel')
 
         // Get the contract from the network.
-        const contract = network.getContract('fabcar')
+        const contract = network.getContract('product')
 
         // createProduct(ctx, title, type, description, price, rating)
         await contract.submitTransaction('createProduct', 'SKU-7', 'Parle Biscuit', 'Food', 'A biscuit', 5, 5)

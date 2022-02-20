@@ -38,7 +38,7 @@ async function main() {
         const network = await gateway.getNetwork('mychannel')
 
         // Get the contract from the network.
-        const contract = network.getContract('fabcar')
+        const contract = network.getContract('product')
 
         // Evaluate the specified transaction.
         // queryProduct transaction - requires 1 argument, ex: ('queryProduct', 'SKU-2')
