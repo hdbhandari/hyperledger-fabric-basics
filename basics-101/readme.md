@@ -62,6 +62,13 @@
 
 `sudo rm hyperledger-fabric-basics/basics-101/chaincode/README.md`
 
+`rm hyperledger-fabric-basics/basics-102/fabcar/javascript/.eslintrc.js`
+
+`rm hyperledger-fabric-basics/basics-102/fabcar/javascript/.editorconfig`
+
+`rm hyperledger-fabric-basics/basics-102/fabcar/javascript/.eslintignore`
+
+
 ## Directories
 
 ### bin
@@ -105,12 +112,12 @@ This folder contains example smart contracts. It is recommended that users start
 
 - To query chaincode
 
-### Make changes into the chaincode
+### Developing the chaincode
 
 - submitTransaction : To write something to Blockchain
 - evaluateTransaction : To query something from Blockchain
 
-## Developing Chaincode
+## Deploying the Chaincode and starting the Network
 
 - First install npm modules in Chaincode and SDK directory
   - basics-101/chaincode/fabcar/javascript
@@ -144,3 +151,7 @@ This folder contains example smart contracts. It is recommended that users start
   - `docker rm [container-id]`
   - `docker volume ls`
   - `docker volume rm [volume-id]`
+
+## Deploying chaincode individually
+
+`./network.sh deployCC -ccn fabcar -ccv 1 -cci initLedger -ccl javascript -ccp ../chaincode/fabcar/javascript/`
