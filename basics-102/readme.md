@@ -154,3 +154,34 @@ This folder contains example smart contracts. It is recommended that users start
 ## Deploying chaincode individually
 
 `./network.sh deployCC -ccn fabcar -ccv 1 -cci initLedger -ccl javascript -ccp ../chaincode/fabcar/javascript/`
+
+## hyperledger-explorer
+
+- [Commands Reference](https://github.com/hyperledger/blockchain-explorer)
+- Create a directory hyperledger-explorer inside basics-102
+- Execute below commands, when the network is up
+
+````wget https://raw.githubusercontent.com/hyperledger/blockchain-explorer/main/examples/net1/config.json
+
+wget https://raw.githubusercontent.com/hyperledger/blockchain-explorer/main/examples/net1/connection-profile/test-network.json -P connection-profile
+
+wget https://raw.githubusercontent.com/hyperledger/blockchain-explorer/main/docker-compose.yaml
+
+cd ~
+
+cp -R hyperledger-fabric-basics/basics-102/test-network/organizations/ hyperledger-fabric-basics/basics-102/hyperledger-explorer```
+
+rm hyperledger-fabric-basics/basics-102/test-network/README.md
+````
+
+- After executing above commands update docker-compose.yaml file
+- Update /connection-profile/test-network.json file also
+- Now start the explorer
+  `docker-compose up`
+
+- After it starts, navigate to [localhost:8080](http://localhost:8080/#/)
+- username: exploreradmin
+- password: exploreradminpw
+
+- To stop hyperledger-explorer, don't use `-v` flag if volumes required t be used later
+  `docker-compose down -v`
