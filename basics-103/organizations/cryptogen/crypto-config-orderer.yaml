@@ -1,0 +1,5 @@
+OrdererOrgs:
+  - Name: Orderer
+    Domain: hlf.com
+    Specs:
+      - Hostname: hlf_orderer

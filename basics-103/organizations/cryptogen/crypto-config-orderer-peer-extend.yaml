@@ -1,0 +1,11 @@
+OrdererOrgs:
+  - Name: Orderer2
+    Domain: hlf.com
+    Specs:
+      - Hostname: hlf_orderer2
+
+PeerOrgs:
+  - Name: HLF_Org3
+    Domain: hlf.com
+    Template:
+      Count: 3

@@ -1,0 +1,8 @@
+PeerOrgs:
+  - Name: HLF_Org2
+    Domain: hlf.com
+    Specs:
+      - Hostname: hlfpeer2
+        CommonName: hlfpeer2
+    Users:
+      Count: 2
