@@ -16,13 +16,11 @@
 ## Create a new Fabric Environment
 
 - Now we will delete all the unnecessary files and directories and create a minimum directory structure
-- Navigate to the directory where above commands were executed
+- I have executed above commands from my home directory
 
 `cd ~`
 
-`sudo chmod 777 basics-102`
-
-`sudo cp -r fabric-samples/bin/ hyperledger-fabric-basics/basics-102/`
+`sudo chmod 755 basics-102`
 
 `sudo cp -r fabric-samples/config/ hyperledger-fabric-basics/basics-102/`
 
@@ -72,7 +70,8 @@
 
 ### bin
 
-- contains the binaries files
+- Now this directories is moved one directory up i.e. parallel to basics-102 directory
+- network.sh file is updated accordingly
 
 ### config
 
@@ -128,12 +127,12 @@ This folder contains example smart contracts. It is recommended that users start
   - basics-102/fabcar/javascript/query.js
 - Now we can start the Network with below script, available inside SDK
   - `cd ~`
-  - `cd hyperledger-fabric-basics/basics-102/fabcar`
+  - `cd hyperledger-fabric-basics/basics-102/product`
   - `sudo ./startFabric.sh javascript`
 - Above script will also install chaincode and start the network
 - Now we can use the SDK to communicate with the Blockchain
   - `cd ~`
-  - `cd hyperledger-fabric-basics/basics-102/fabcar/javascript`
+  - `cd hyperledger-fabric-basics/basics-102/product/javascript`
 - First we will Enroll the admin user, then we will register the user, to invoke chaincode methods
   - `node enrollAdmin.js`
   - `node registerUser.js`
