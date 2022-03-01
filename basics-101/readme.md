@@ -22,8 +22,6 @@
 
 `cd ~`
 
-`sudo cp -r fabric-samples/bin/ hyperledger-fabric-basics/basics-101/`
-
 `sudo cp -r fabric-samples/config/ hyperledger-fabric-basics/basics-101/`
 
 `sudo cp -r fabric-samples/fabcar/ hyperledger-fabric-basics/basics-101/`
@@ -68,12 +66,12 @@
 
 `rm hyperledger-fabric-basics/basics-102/fabcar/javascript/.eslintignore`
 
-
 ## Directories
 
 ### bin
 
-- contains the binaries files
+- Now this directories is moved one directory up i.e. parallel to basics-102 directory
+- network.sh file is updated accordingly
 
 ### config
 
