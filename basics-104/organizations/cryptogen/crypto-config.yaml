@@ -1,0 +1,34 @@
+OrdererOrgs:
+  - Name: Orderer
+    Domain: hlf.com
+    Specs:
+      - Hostname: orderer
+
+  - Name: Orderer2
+    Domain: hlf2.com
+    Specs:
+      - Hostname: orderer2
+
+PeerOrgs:
+  - Name: Org1
+    Domain: org1.hlf.com
+    Specs:
+      - Hostname: hlfpeer
+        CommonName: hlfpeer
+    Users:
+      Count: 2
+
+  - Name: Org2
+    Domain: org2.hlf.com
+    Specs:
+      - Hostname: hlfpeer2
+        CommonName: hlfpeer2
+    Users:
+      Count: 2
+
+  - Name: Org3
+    Domain: org3.hlf.com
+    Template:
+      Count: 3
+    Users:
+      Count: 1
