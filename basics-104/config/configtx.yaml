@@ -1,0 +1,185 @@
+Organizations:
+  - &AppleOrdererOrg
+    Name: &AppleOrg
+    ID: AppleOrgMSP
+    MSPDir: ../config-out/organizations/ordererOrganizations/apple.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('AppleOrgMSP.member')"
+      Writers:
+        Type: Signature
+        Rule: "OR('AppleOrgMSP.member')"
+      Admins:
+        Type: Signature
+        Rule: "OR('AppleOrgMSP.admin')"
+    OrdererEndpoints:
+      - appleorderer.apple.com:7050
+
+  - &SamsungOrdererOrg
+    Name: &SamsungOrg
+    ID: SamsungOrgMSP
+    MSPDir: ../config-out/organizations/ordererOrganizations/samsung.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('SamsungOrgMSP.member')"
+      Writers:
+        Type: Signature
+        Rule: "OR('SamsungOrgMSP.member')"
+      Admins:
+        Type: Signature
+        Rule: "OR('SamsungOrgMSP.admin')"
+    OrdererEndpoints:
+      - samsungorderer.Samsung.com:7051
+
+  - &AppleOrg
+    Name: AppleOrgMSP
+    ID: AppleOrgMSP
+    MSPDir: ../config-out/organizations/peerOrganizations/appleorg.apple.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('AppleOrgMSP.admin','AppleOrgMSP.peer','AppleOrgMSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('AppleOrgMSP.admin','AppleOrgMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('AppleOrgMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('AppleOrgMSP.peer')"
+
+  - &SamsungOrg
+    Name: SamsungOrgMSP
+    ID: SamsungOrgMSP
+    MSPDir: ../config-out/organizations/peerOrganizations/samsungorg.samsung.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('SamsungOrgMSP.admin','SamsungOrgMSP.peer','SamsungOrgMSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('SamsungOrgMSP.admin','SamsungOrgMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('SamsungOrgMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('SamsungOrgMSP.peer')"
+
+Capabilities:
+  Channel: &ChannelCapabilities
+    V2.0: true
+  Orderer: &OrdererCapabilities
+    V2.0: true
+  Application: &ApplicationCapabilities
+    V2.0: true
+
+Application: &ApplicationDefaults
+  Organizations:
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+    LifecycleEndorsement:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Endorsement"
+  Capabilities:
+    <<: *ApplicationCapabilities
+
+Orderer: &OrdererDefaults
+  OrdererType: etcdraft
+  Addresses:
+    - localhost:7052
+  EtcdRaft:
+    Consenters:
+      - Host: localhost
+        Port: 7052
+        ClientTLSCert: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/server.crt
+        ServerTLSCert: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/server.crt
+
+  # Batch Timeout: The amount of time to wait before creating a batch
+  BatchTimeout: 2s
+
+  # Batch Size: Controls the number of messages batched into a block
+  BatchSize:
+    # Max Message Count: The maximum number of messages to permit in a batch
+    MaxMessageCount: 10
+
+    # Absolute Max Bytes: The absolute maximum number of bytes allowed for
+    # the serialized messages in a batch.
+    AbsoluteMaxBytes: 99 MB
+
+    # Preferred Max Bytes: The preferred maximum number of bytes allowed for
+    # the serialized messages in a batch. A message larger than the preferred
+    # max bytes will result in a batch larger than preferred max bytes.
+    PreferredMaxBytes: 512 KB
+
+  # Organizations is the list of orgs which are defined as participants on
+  # the orderer side of the network
+  Organizations:
+
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+    # BLockValidation specifies what signatures must be included in the block
+    # from the orderer for the peer to validate it
+    BlockValidation:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+
+Channel: &ChannelDefaults
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+  Capabilities:
+    <<: *ChannelCapabilities
+
+Profiles:
+  AppleSamsungOrdererGenesis:
+    <<: *ChannelDefaults
+    Orderer:
+      <<: *OrdererDefaults
+      Organizations:
+        - *AppleOrdererOrg
+        - *SamsungOrdererOrg
+      Capabilities:
+        <<: *OrdererCapabilities
+    Consortiums:
+      AppleSamsungConsortium:
+        Organizations:
+          - *AppleOrg
+          - *SamsungOrg
+
+  AppleSamsungOrgsChannel:
+    Consortium: AppleSamsungConsortium
+    <<: *ChannelDefaults
+    Application:
+      <<: *ApplicationDefaults
+      Organizations:
+        - *AppleOrg
+        - *SamsungOrg
+      Capabilities:
+        <<: *ApplicationCapabilities

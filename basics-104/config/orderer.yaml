@@ -1,0 +1,83 @@
+General:
+  BootstrapMethod: file
+  BootstrapFile: ./config-out/genesis.block
+  BCCSP:
+    Default: SW
+
+    SW:
+      HASH: SHA2
+      Security: 256
+      FileKeyStore:
+        KeyStore:
+
+    PKCS11:
+      Library:
+      Label:
+      Pin:
+      Hash:
+      Security:
+      FileKeyStore:
+        KeyStore:
+
+  Authentication:
+    TimeWindow: 15m
+
+  LocalMSPDir: ../config-out/organizations/ordererOrganizations/apple.com/msp
+  LocalMSPID: AppleOrgMSP
+
+  Profile:
+    Enabled: false
+    Address: 0.0.0.0:6060
+
+  Cluster:
+    SendBufferSize: 10
+    ClientCertificate:
+    ClientPrivateKey:
+    ListenPort:
+    ListenAddress:
+    ServerCertificate:
+    ServerPrivateKey:
+
+  ListenAddress: 127.0.0.1
+  ListenPort: 7050
+  Keepalive:
+    ServerMinInterval: 60s
+    ServerInterval: 7200s
+    ServerTimeout: 20s
+
+  TLS:
+    Enabled: false
+    PrivateKey: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/server.key
+    Certificate: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/server.crt
+    RootCAs: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/ca.crt
+    ClientAuthRequired: false
+    ClientRootCAs:
+
+FileLedger:
+  Location: ./config-out/ledger
+  Prefix: appleSamsungOrdererLedger
+
+Debug:
+  BroadcastTraceDir:
+  DeliverTraceDir:
+
+Operations:
+  ListenAddress: 127.0.0.1:8443
+  TLS:
+    Enabled: false
+    Certificate:
+    PrivateKey:
+    ClientAuthRequired: false
+    RootCAs: []
+
+Metrics:
+  Provider: disabled
+  Statsd:
+    Network: udp
+    Address: 127.0.0.1:8125
+    WriteInterval: 30s
+    Prefix:
+
+Consensus:
+  WALDir: ./config-out/orderer/etcdraft/wal
+  SnapDir: ./config-out/orderer/etcdraft/snapshot
