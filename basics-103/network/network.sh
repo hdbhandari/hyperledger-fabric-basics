@@ -1,9 +1,11 @@
 #!/bin/bash
 
-../../bin/cryptogen generate --config=../organizations/cryptogen/crypto-config-orderer.yaml
+export PATH=${PWD}/../bin:$PATH
 
-../../bin/cryptogen generate --config=../organizations/cryptogen/crypto-config-org1.yaml
+# Generating configuration
+cryptogen generate --config=../organizations/cryptogen/crypto-config-orderer.yaml
+cryptogen generate --config=../organizations/cryptogen/crypto-config-org1.yaml
+cryptogen generate --config=../organizations/cryptogen/crypto-config-org2.yaml
 
-../../bin/cryptogen generate --config=../organizations/cryptogen/crypto-config-org2.yaml
-
-../../bin/cryptogen extend --config=../organizations/cryptogen/crypto-config-orderer-peer-extend.yaml
+# Extending configuration
+cryptogen extend --config=../organizations/cryptogen/crypto-config-orderer-peer-extend.yaml

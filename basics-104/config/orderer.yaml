@@ -1,6 +1,6 @@
 General:
   BootstrapMethod: file
-  BootstrapFile: ./config-out/genesis.block
+  BootstrapFile: ../config-out/genesis.block
   BCCSP:
     Default: SW
 
@@ -21,8 +21,7 @@ General:
 
   Authentication:
     TimeWindow: 15m
-
-  LocalMSPDir: ../config-out/organizations/ordererOrganizations/apple.com/msp
+  LocalMSPDir: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/msp
   LocalMSPID: AppleOrgMSP
 
   Profile:
@@ -54,7 +53,7 @@ General:
     ClientRootCAs:
 
 FileLedger:
-  Location: ./config-out/ledger
+  Location: ../config-out/ledger
   Prefix: appleSamsungOrdererLedger
 
 Debug:
