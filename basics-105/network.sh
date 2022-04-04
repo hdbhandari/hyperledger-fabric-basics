@@ -16,10 +16,10 @@ rm -rf ${CFG_OUT_PATH}
 cryptogen generate  --output=${CFG_OUT_PATH}/organizations --config=./config/crypto-config.yaml
 
 # Generating Genesis Block
-configtxgen -channelID=apple-channel -profile=AppleOrdererGenesis -outputBlock=${CFG_OUT_PATH}/genesis.block
+configtxgen -channelID=apple-samsung -profile=AppleSamsungOrdererGenesis -outputBlock=${CFG_OUT_PATH}/genesis.block
 
 # Generating Channel Transaction
-configtxgen -channelID=apple-channel -profile=apple-channel-profile -outputCreateChannelTx=${CFG_OUT_PATH}/AppleSamsung.channel.tx
+configtxgen -channelID=apple-samsung -profile=apple-samsung-channel-profile -outputCreateChannelTx=${CFG_OUT_PATH}/AppleSamsung.channel.tx
 
 # Inspect Genesis Block
 mkdir -p ${CFG_OUT_PATH}/json

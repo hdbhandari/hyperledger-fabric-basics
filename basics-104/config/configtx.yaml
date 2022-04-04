@@ -1,37 +1,23 @@
 Organizations:
   - &AppleOrdererOrg
-    Name: &AppleOrg
-    ID: AppleOrgMSP
+    Name: AppleOrg
+    ID: AppleOrdererMSP
     MSPDir: ../config-out/organizations/ordererOrganizations/apple.com/msp
     Policies:
       Readers:
         Type: Signature
-        Rule: "OR('AppleOrgMSP.member')"
+        Rule: "OR('AppleOrgMSP.admin','AppleOrgMSP.member','AppleOrgMSP.client','AppleOrgMSP.peer')"
       Writers:
         Type: Signature
-        Rule: "OR('AppleOrgMSP.member')"
+        Rule: "OR('AppleOrgMSP.admin','AppleOrgMSP.member','AppleOrgMSP.client','AppleOrgMSP.peer')"
       Admins:
         Type: Signature
         Rule: "OR('AppleOrgMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('AppleOrgMSP.member','AppleOrgMSP.peer')"
     OrdererEndpoints:
       - appleorderer.apple.com:7050
-
-  - &SamsungOrdererOrg
-    Name: &SamsungOrg
-    ID: SamsungOrgMSP
-    MSPDir: ../config-out/organizations/ordererOrganizations/samsung.com/msp
-    Policies:
-      Readers:
-        Type: Signature
-        Rule: "OR('SamsungOrgMSP.member')"
-      Writers:
-        Type: Signature
-        Rule: "OR('SamsungOrgMSP.member')"
-      Admins:
-        Type: Signature
-        Rule: "OR('SamsungOrgMSP.admin')"
-    OrdererEndpoints:
-      - samsungorderer.Samsung.com:7051
 
   - &AppleOrg
     Name: AppleOrgMSP
@@ -51,31 +37,13 @@ Organizations:
         Type: Signature
         Rule: "OR('AppleOrgMSP.peer')"
 
-  - &SamsungOrg
-    Name: SamsungOrgMSP
-    ID: SamsungOrgMSP
-    MSPDir: ../config-out/organizations/peerOrganizations/samsungorg.samsung.com/msp
-    Policies:
-      Readers:
-        Type: Signature
-        Rule: "OR('SamsungOrgMSP.admin','SamsungOrgMSP.peer','SamsungOrgMSP.client')"
-      Writers:
-        Type: Signature
-        Rule: "OR('SamsungOrgMSP.admin','SamsungOrgMSP.client')"
-      Admins:
-        Type: Signature
-        Rule: "OR('SamsungOrgMSP.admin')"
-      Endorsement:
-        Type: Signature
-        Rule: "OR('SamsungOrgMSP.peer')"
-
 Capabilities:
   Channel: &ChannelCapabilities
-    V2.0: true
+    V2_0: true
   Orderer: &OrdererCapabilities
-    V2.0: true
+    V2_0: true
   Application: &ApplicationCapabilities
-    V2.0: true
+    V2_0: true
 
 Application: &ApplicationDefaults
   Organizations:
@@ -98,14 +66,13 @@ Application: &ApplicationDefaults
 Orderer: &OrdererDefaults
   OrdererType: etcdraft
   Addresses:
-    - localhost:7052
+    - localhost:7051
   EtcdRaft:
     Consenters:
       - Host: localhost
-        Port: 7052
+        Port: 7050
         ClientTLSCert: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/server.crt
         ServerTLSCert: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/server.crt
-
   # Batch Timeout: The amount of time to wait before creating a batch
   BatchTimeout: 2s
 
@@ -158,28 +125,25 @@ Channel: &ChannelDefaults
     <<: *ChannelCapabilities
 
 Profiles:
-  AppleSamsungOrdererGenesis:
+  AppleOrdererGenesis:
     <<: *ChannelDefaults
     Orderer:
       <<: *OrdererDefaults
       Organizations:
         - *AppleOrdererOrg
-        - *SamsungOrdererOrg
       Capabilities:
         <<: *OrdererCapabilities
     Consortiums:
-      AppleSamsungConsortium:
+      AppleConsortium:
         Organizations:
           - *AppleOrg
-          - *SamsungOrg
 
-  AppleSamsungOrgsChannel:
-    Consortium: AppleSamsungConsortium
+  apple-channel-profile:
+    Consortium: AppleConsortium
     <<: *ChannelDefaults
     Application:
       <<: *ApplicationDefaults
       Organizations:
         - *AppleOrg
-        - *SamsungOrg
       Capabilities:
         <<: *ApplicationCapabilities

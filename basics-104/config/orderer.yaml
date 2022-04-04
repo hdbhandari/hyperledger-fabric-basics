@@ -21,8 +21,9 @@ General:
 
   Authentication:
     TimeWindow: 15m
+
   LocalMSPDir: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/msp
-  LocalMSPID: AppleOrgMSP
+  LocalMSPID: AppleOrdererMSP
 
   Profile:
     Enabled: false
@@ -45,16 +46,17 @@ General:
     ServerTimeout: 20s
 
   TLS:
-    Enabled: false
+    Enabled: true
     PrivateKey: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/server.key
     Certificate: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/server.crt
-    RootCAs: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/ca.crt
+    RootCAs:
+      - ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/ca.crt
     ClientAuthRequired: false
     ClientRootCAs:
 
 FileLedger:
   Location: ../config-out/ledger
-  Prefix: appleSamsungOrdererLedger
+  Prefix: apple-orderer-ledger
 
 Debug:
   BroadcastTraceDir:
@@ -78,5 +80,5 @@ Metrics:
     Prefix:
 
 Consensus:
-  WALDir: ./config-out/orderer/etcdraft/wal
-  SnapDir: ./config-out/orderer/etcdraft/snapshot
+  WALDir: ../config-out/orderer/etcdraft/wal
+  SnapDir: ../config-out/orderer/etcdraft/snapshot

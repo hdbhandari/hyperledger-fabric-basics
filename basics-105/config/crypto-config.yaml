@@ -4,11 +4,24 @@ OrdererOrgs:
     Specs:
       - Hostname: AppleOrderer1
 
+  - Name: SamsungOrderer1
+    Domain: samsung.com
+    Specs:
+      - Hostname: SamsungOrderer1
+
 PeerOrgs:
   - Name: AppleOrg
     Domain: appleorg.apple.com
     Specs:
       - Hostname: applepeer
         CommonName: applepeer
+    Users:
+      Count: 2
+
+  - Name: SamsungOrg
+    Domain: samsungorg.samsung.com
+    Specs:
+      - Hostname: samsungpeer
+        CommonName: samsungpeer
     Users:
       Count: 2
