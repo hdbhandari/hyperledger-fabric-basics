@@ -1,0 +1,38 @@
+{
+  "name": "104-basics",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "set NODE_ENV=development& nodemon src/server.js",
+    "prod": "set NODE_ENV=production& nodemon src/server.js",
+    "debug:dev": "set NODE_ENV=development& ndb src/server.js",
+    "debug:prod": "set NODE_ENV=production& ndb src/server.js",
+    "kill": "npx kill-port 5000"
+  },
+  "keywords": [],
+  "author": "Himanshu Bhandari (https://github.com/hdbhandari)",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^6.2.0",
+    "fabric-ca-client": "^2.2.4",
+    "fabric-network": "^2.2.4",
+    "helmet": "^5.0.2",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.0",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.7.2",
+    "slugify": "^1.6.5",
+    "validator": "^13.7.0",
+    "xss-clean": "^0.1.1"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  }
+}
