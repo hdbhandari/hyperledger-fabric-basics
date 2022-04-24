@@ -17,7 +17,7 @@ Organizations:
         Type: Signature
         Rule: "OR('AppleOrgMSP.member','AppleOrgMSP.peer')"
     OrdererEndpoints:
-      - appleorderer.apple.com:7050
+      - orderer.apple.com:7050
 
   - &SamsungOrdererOrg
     Name: SamsungOrg
@@ -37,7 +37,7 @@ Organizations:
         Type: Signature
         Rule: "OR('AppleOrgMSP.member','AppleOrgMSP.peer')"
     OrdererEndpoints:
-      - samsungorderer.Samsung.com:7051
+      - orderer.Samsung.com:7051
 
   - &AppleOrg
     Name: AppleOrgMSP
@@ -104,16 +104,16 @@ Application: &ApplicationDefaults
 Orderer: &OrdererDefaults
   OrdererType: etcdraft
   Addresses:
-    - 127.0.0.1:7051
-    - 127.0.0.1:7052
+    - localhost:7050
+    - localhost:7051
   EtcdRaft:
     Consenters:
-      - Host: 127.0.0.1
-        Port: 7051
+      - Host: localhost
+        Port: 7050
         ClientTLSCert: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/server.crt
         ServerTLSCert: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/server.crt
-      - Host: 127.0.0.1
-        Port: 7052
+      - Host: localhost
+        Port: 7051
         ClientTLSCert: ../config-out/organizations/ordererOrganizations/samsung.com/orderers/SamsungOrderer1.samsung.com/tls/server.crt
         ServerTLSCert: ../config-out/organizations/ordererOrganizations/samsung.com/orderers/SamsungOrderer1.samsung.com/tls/server.crt
 
