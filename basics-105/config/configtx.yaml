@@ -104,15 +104,15 @@ Application: &ApplicationDefaults
 Orderer: &OrdererDefaults
   OrdererType: etcdraft
   Addresses:
-    - localhost:7050
-    - localhost:7051
+    - AppleOrderer1.apple.com:7050
+    - SamsungOrderer1.samsung.com:7051
   EtcdRaft:
     Consenters:
-      - Host: localhost
+      - Host: AppleOrderer1.apple.com
         Port: 7050
         ClientTLSCert: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/server.crt
         ServerTLSCert: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/server.crt
-      - Host: localhost
+      - Host: SamsungOrderer1.samsung.com
         Port: 7051
         ClientTLSCert: ../config-out/organizations/ordererOrganizations/samsung.com/orderers/SamsungOrderer1.samsung.com/tls/server.crt
         ServerTLSCert: ../config-out/organizations/ordererOrganizations/samsung.com/orderers/SamsungOrderer1.samsung.com/tls/server.crt

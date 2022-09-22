@@ -29,4 +29,4 @@ configtxgen -inspectBlock ${CFG_OUT_PATH}/genesis.block > ${CFG_OUT_PATH}/json/g
 configtxgen -inspectChannelCreateTx ${CFG_OUT_PATH}/AppleSamsung.channel.tx > ${CFG_OUT_PATH}/json/AppleSamsung.channel.json
 
 # Start the orderer
-orderer
+# orderer

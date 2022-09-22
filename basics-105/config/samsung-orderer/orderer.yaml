@@ -1,6 +1,6 @@
 General:
   BootstrapMethod: file
-  BootstrapFile: ../config-out/genesis.block
+  BootstrapFile: ../../config-out/genesis.block
   BCCSP:
     Default: SW
 
@@ -22,8 +22,8 @@ General:
   Authentication:
     TimeWindow: 15m
 
-  LocalMSPDir: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/msp
-  LocalMSPID: AppleOrdererMSP
+  LocalMSPDir: ../../config-out/organizations/ordererOrganizations/samsung.com/orderers/SamsungOrderer1.samsung.com/msp
+  LocalMSPID: SamsungOrdererMSP
 
   Profile:
     Enabled: false
@@ -39,7 +39,7 @@ General:
     ServerPrivateKey:
 
   ListenAddress: 127.0.0.1
-  ListenPort: 7050
+  ListenPort: 7051
   Keepalive:
     ServerMinInterval: 60s
     ServerInterval: 7200s
@@ -47,23 +47,23 @@ General:
 
   TLS:
     Enabled: true
-    PrivateKey: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/server.key
-    Certificate: ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/server.crt
+    PrivateKey: ../../config-out/organizations/ordererOrganizations/samsung.com/orderers/SamsungOrderer1.samsung.com/tls/server.key
+    Certificate: ../../config-out/organizations/ordererOrganizations/samsung.com/orderers/SamsungOrderer1.samsung.com/tls/server.crt
     RootCAs:
-      - ../config-out/organizations/ordererOrganizations/apple.com/orderers/AppleOrderer1.apple.com/tls/ca.crt
+      - ../../config-out/organizations/ordererOrganizations/samsung.com/orderers/SamsungOrderer1.samsung.com/tls/ca.crt
     ClientAuthRequired: false
     ClientRootCAs:
 
 FileLedger:
-  Location: ../config-out/ledger
-  Prefix: apple-orderer-ledger
+  Location: ../../config-out/ledger/samsung
+  Prefix: samsung-orderer-ledger
 
 Debug:
   BroadcastTraceDir:
   DeliverTraceDir:
 
 Operations:
-  ListenAddress: 127.0.0.1:8443
+  ListenAddress: 127.0.0.1:8444
   TLS:
     Enabled: false
     Certificate:
@@ -75,11 +75,11 @@ Metrics:
   Provider: statsd
   Statsd:
     Network: udp
-    Address: 127.0.0.1:8125
+    Address: 127.0.0.1:8126
     WriteInterval: 30s
     Prefix:
 
 Consensus:
   # With ../ it is creating directories parallel to basics-105 directory
-  WALDir: config-out/orderer/etcdraft/wal
-  SnapDir: config-out/orderer/etcdraft/snapshot
+  WALDir: config-out/orderer/samsung/etcdraft/wal
+  SnapDir: config-out/orderer/samsung/etcdraft/snapshot
