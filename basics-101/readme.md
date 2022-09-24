@@ -7,8 +7,11 @@
 
 ## Commands
 
-- Below command will download fabric version 2.2.2 which is the latest LTS release of Hyperledger Fabric
-  `curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.2.2 1.4.9`
+- Below command will download fabric version 2.2.2
+- Version 2.2.2 is the latest LTS release of Hyperledger Fabric
+
+  `sudo curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.2.2 1.4.9`
+
 - It will create a folder named fabric-sample in current directory
 - There is folder named test-network,which comes with:
   - Single Network
@@ -85,7 +88,9 @@
 
 ### fabcar
 
-This folder contains example smart contracts. It is recommended that users start with the Asset transfer samples and tutorials series for the most recent example smart contracts.
+- This folder contains example smart contracts
+- It is recommended that users start with the Asset transfer samples and
+  tutorials series for the most recent example smart contracts.
 
 | **Smart Contract** | **Description**                                                                                                                                                                   | **Languages**                    |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
@@ -118,21 +123,21 @@ This folder contains example smart contracts. It is recommended that users start
 ## Deploying the Chaincode and starting the Network
 
 - First install npm modules in Chaincode and SDK directory
-  - basics-101/chaincode/fabcar/javascript
-  - basics-101/fabcar/javascript
+  - `cd ~/hyperledger-fabric-basics/basics-101/chaincode/fabcar/javascript`
+  - `npm i`
+  - `cd ~/hyperledger-fabric-basics/basics-101/fabcar/javascript`
+  - `npm i`
 - Find chaincode in
   - basics-101/chaincode/fabcar/javascript/lib/fabcar.js
 - Find updated SDK code in
   - basics-101/fabcar/javascript/invoke.js
   - basics-101/fabcar/javascript/query.js
 - Now we can start the Network with below script, available inside SDK
-  - `cd ~`
-  - `cd hyperledger-fabric-basics/basics-101/fabcar`
+  - `cd ~/hyperledger-fabric-basics/basics-101/fabcar`
   - `sudo ./startFabric.sh javascript`
 - Above script will also install chaincode and start the network
 - Now we can use the SDK to communicate with the Blockchain
-  - `cd ~`
-  - `cd hyperledger-fabric-basics/basics-101/fabcar/javascript`
+  - `cd ~/hyperledger-fabric-basics/basics-101/fabcar/javascript`
 - First we will Enroll the admin user, then we will register the user, to invoke chaincode methods
   - `node enrollAdmin.js`
   - `node registerUser.js`

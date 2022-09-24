@@ -1,6 +1,6 @@
 # Introduction
 
-- We will use the official fabcar example and will modify it to add products instead of cars
+- We will use the official product example and will modify it to add products instead of cars
 - We will use Javascript based SDK and Chaincode
 
 ## Commands
@@ -24,7 +24,7 @@
 
 `sudo cp -r fabric-samples/config/ hyperledger-fabric-basics/basics-102/`
 
-`sudo cp -r fabric-samples/fabcar/ hyperledger-fabric-basics/basics-102/`
+`sudo cp -r fabric-samples/product/ hyperledger-fabric-basics/basics-102/`
 
 `sudo cp -r fabric-samples/test-network/ hyperledger-fabric-basics/basics-102/`
 
@@ -38,33 +38,33 @@
 
 `sudo rm -rf hyperledger-fabric-basics/basics-102/chaincode/sacc/`
 
-`sudo rm -rf hyperledger-fabric-basics/basics-102/chaincode/fabcar/external/`
+`sudo rm -rf hyperledger-fabric-basics/basics-102/chaincode/product/external/`
 
-`sudo rm -rf hyperledger-fabric-basics/basics-102/chaincode/fabcar/go/`
+`sudo rm -rf hyperledger-fabric-basics/basics-102/chaincode/product/go/`
 
-`sudo rm -rf hyperledger-fabric-basics/basics-102/chaincode/fabcar/java`
+`sudo rm -rf hyperledger-fabric-basics/basics-102/chaincode/product/java`
 
-`sudo rm -rf hyperledger-fabric-basics/basics-102/chaincode/fabcar/typescript/`
+`sudo rm -rf hyperledger-fabric-basics/basics-102/chaincode/product/typescript/`
 
-`sudo rm -rf hyperledger-fabric-basics/basics-102/fabcar/go/`
+`sudo rm -rf hyperledger-fabric-basics/basics-102/product/go/`
 
-`sudo rm -rf hyperledger-fabric-basics/basics-102/fabcar/java`
+`sudo rm -rf hyperledger-fabric-basics/basics-102/product/java`
 
-`sudo rm -rf hyperledger-fabric-basics/basics-102/fabcar/typescript/`
+`sudo rm -rf hyperledger-fabric-basics/basics-102/product/typescript/`
 
-`sudo rm hyperledger-fabric-basics/basics-102/chaincode/fabcar/javascript/.editorconfig`
+`sudo rm hyperledger-fabric-basics/basics-102/chaincode/product/javascript/.editorconfig`
 
-`sudo rm hyperledger-fabric-basics/basics-102/chaincode/fabcar/javascript/.eslintignore`
+`sudo rm hyperledger-fabric-basics/basics-102/chaincode/product/javascript/.eslintignore`
 
-`sudo rm hyperledger-fabric-basics/basics-102/chaincode/fabcar/javascript/.eslintrc.js`
+`sudo rm hyperledger-fabric-basics/basics-102/chaincode/product/javascript/.eslintrc.js`
 
 `sudo rm hyperledger-fabric-basics/basics-102/chaincode/README.md`
 
-`rm hyperledger-fabric-basics/basics-102/fabcar/javascript/.eslintrc.js`
+`rm hyperledger-fabric-basics/basics-102/product/javascript/.eslintrc.js`
 
-`rm hyperledger-fabric-basics/basics-102/fabcar/javascript/.editorconfig`
+`rm hyperledger-fabric-basics/basics-102/product/javascript/.editorconfig`
 
-`rm hyperledger-fabric-basics/basics-102/fabcar/javascript/.eslintignore`
+`rm hyperledger-fabric-basics/basics-102/product/javascript/.eslintignore`
 
 ## Directories
 
@@ -83,15 +83,15 @@
 - we are using javascript chaincode in this example
 - need to run `npm i`
 
-### fabcar
+### product
 
 This folder contains example smart contracts. It is recommended that users start with the Asset transfer samples and tutorials series for the most recent example smart contracts.
 
 | **Smart Contract** | **Description**                                                                                                                                                                   | **Languages**                    |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| [fabcar](fabcar)   | Basic smart contract that allows you to add and change data on the ledger using the Fabric contract API. Also contains an example on how to run chaincode as an external service. | Go, Java, JavaScript, Typescript |
+| [product](product)   | Basic smart contract that allows you to add and change data on the ledger using the Fabric contract API. Also contains an example on how to run chaincode as an external service. | Go, Java, JavaScript, Typescript |
 
-- The SDK implementation of the fabcar, which will be used to call the chaincode
+- The SDK implementation of the product, which will be used to call the chaincode
 - Below 4 files are part of SDK, later on we will create web services out of these
 
 #### enrollAdmin.js
@@ -118,13 +118,15 @@ This folder contains example smart contracts. It is recommended that users start
 ## Deploying the Chaincode and starting the Network
 
 - First install npm modules in Chaincode and SDK directory
-  - basics-102/chaincode/fabcar/javascript
-  - basics-102/fabcar/javascript
+  - `cd ~/hyperledger-fabric-basics/basics-102/chaincode/product/javascript`
+  - `npm i`
+  - `cd ~/hyperledger-fabric-basics/basics-102/product/javascript`
+  - `npm i`
 - Find chaincode in
-  - basics-102/chaincode/fabcar/javascript/lib/fabcar.js
+  - basics-102/chaincode/product/javascript/lib/product.js
 - Find updated SDK code in
-  - basics-102/fabcar/javascript/invoke.js
-  - basics-102/fabcar/javascript/query.js
+  - basics-102/product/javascript/invoke.js
+  - basics-102/product/javascript/query.js
 - Now we can start the Network with below script, available inside SDK
   - `cd ~/hyperledger-fabric-basics/basics-102/product`
   - `sudo ./startFabric.sh javascript`
@@ -138,7 +140,7 @@ This folder contains example smart contracts. It is recommended that users start
   - [http://localhost:5984/_utils/]
   - username: admin
   - password: adminpw
-  - DB name: mychannel_fabcar
+  - DB name: mychannel_product
 - Now, we can invoke the chaincode methods
   - `node invoke.js`
   - `node query.js`
@@ -150,7 +152,7 @@ This folder contains example smart contracts. It is recommended that users start
 
 ## Deploying chaincode individually
 
-`./network.sh deployCC -ccn fabcar -ccv 1 -cci initLedger -ccl javascript -ccp ../chaincode/fabcar/javascript/`
+`./network.sh deployCC -ccn product -ccv 1 -cci initLedger -ccl javascript -ccp ../chaincode/product/javascript/`
 
 ## hyperledger-explorer
 

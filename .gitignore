@@ -1,3 +1,4 @@
 *.log
 **config-out
 **wallet
+**package-lock.json
