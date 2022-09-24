@@ -8,4 +8,4 @@
 # Steps
 
 1. Copy configtx directory from test-network
-<!-- 1. Copy config directory from fabric-samples/config -->
+2. Copy docker directory from test-network
