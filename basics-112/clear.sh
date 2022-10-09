@@ -14,12 +14,10 @@ rm ./organizations/fabric-ca/org1/IssuerPublicKey ./organizations/fabric-ca/org1
 rm -rf ./organizations/fabric-ca/org2/msp
 rm ./organizations/fabric-ca/org2/IssuerPublicKey ./organizations/fabric-ca/org2/IssuerRevocationPublicKey ./organizations/fabric-ca/org2/fabric-ca-server.db ./organizations/fabric-ca/org2/ca-cert.pem ./organizations/fabric-ca/org2/tls-cert.pem
 
-echo "Stopping Containers"
+printf "Stopping Containers"
 docker stop $(docker ps -aq)
 
-echo "---------------------------"
-
-echo "Revoving Containers"
+printf "Revoving Containers"
 docker rm $(docker ps -aq)
 
 rm -rf ./system-genesis-block
@@ -28,17 +26,23 @@ rm log.txt
 docker volume prune -f
 docker network prune -f
 
-echo "Containers: "
+printf "Containers: "
 docker ps -a
 
-echo "Volume: "
+printf "Volume: "
 docker volume ls
 
-echo "Networks: "
+printf "Networks: "
 docker network ls
 
 rm -rf channel-artifacts
 rm student-*.tar.gz
 
+## Cleaning Chaincode
 rm -rf student-app/chaincode-js/node_modules
 rm student-app/chaincode-js/package-lock.json
+
+## Cleaning SDK
+rm -rf fabric-SDK/wallet/*
+rm fabric-SDK/package-lock.json
+rm -rf fabric-SDK/node_modules

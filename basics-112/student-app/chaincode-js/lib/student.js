@@ -23,6 +23,7 @@ class Student extends Contract {
     const allResults = []
     // range query with empty string for startKey and endKey does an open-ended query of all assets in the chaincode namespace.
     const iterator = await ctx.stub.getStateByRange('', '')
+    /* 
     let result = await iterator.next()
     while (!result.done) {
       const strValue = Buffer.from(result.value.value.toString()).toString('utf8')
@@ -35,6 +36,10 @@ class Student extends Contract {
       }
       allResults.push({ Key: result.value.key, Record: record })
       result = await iterator.next()
+    } 
+    */
+    for await (const res of iterator) {
+      allResults.push({ key: res.key, value: res.value.toString() })
     }
     return JSON.stringify(allResults)
   }
@@ -49,3 +54,4 @@ class Student extends Contract {
 }
 
 module.exports = Student
+

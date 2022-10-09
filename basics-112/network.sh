@@ -77,8 +77,7 @@ popd
 # Deploy and Invoke the chaincode
 bash scripts/deployCC.sh
 
-
 # Installing node-modules for the application
-# pushd student-app/application-js
-# npm install
-# popd
+pushd fabric-SDK
+npm install
+popd
