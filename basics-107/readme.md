@@ -8,7 +8,7 @@
 
 1. First of all we need to generate crypto-material using either cryptogen tool or by using fabric-ca
 2. We will use fabric-ca
-3. copy organizations/fabric-ca directory from test-network
+3. copy organizations/fabric-ca directory from fabric-samples/test-network
 4. copy docker/docker-compose-ca.yaml directory from test-network
 5. replace all infoln with echo command
 6. The network.sh script will be used to perform all the actions
